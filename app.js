@@ -1,30 +1,31 @@
-
-// Hw #definition
-//1. using only two letters "a", "s" print out word ananas case insensitive AnaNAS, 
-//2. write function calculate that can perform any arithmetic operation on two numbers (*, /, +, -);
-//3. write any example for running the following expression fun(5)(10, 3)
-
-console.log(`A${"a"-1}as`) //1.
-
-function calculate(num1, num2, method) { //2.
-        switch (method) {
-        case "+":
-            return num1 + num2;
-        case "-":
-            return num1 - num2;
-        case "*":
-            return num1 * num2;
-        case "/":
-            return num1 / num2;        
-            
-        } 
-      }
-console.log(calculate(4,5, "*")) 
-
-function fun(a) { //3
-        return function(b,c) {
-          return a + b +c
+function encode(num, codingString)
+{
+  for (let i = 0; i < codingString.length; i++) 
+  {
+    for (let j = i + 1; j < codingString.length; j++) 
+    {
+       if (codingString[i] == codingString[j])
+        {
+          console.log("ERROR: String content repeated symbols!");
+          break;
         }
       }
-      
-      console.log(fun(5)(10, 3))
+    }
+
+    let res="";
+     do {
+       const digit = Math.trunc(num % codingString.length);            
+       const symb = getSymbol(digit, codingString);
+       res = symb + res;
+       num = Math.trunc(num / codingString.length);
+
+         } while(num >= 1);
+         return res;
+  }
+    function getSymbol(digit, codingString) 
+    {
+      return "" + codingString[digit]; 
+    }
+
+  console.log(encode(11, "abcdefg"));
+
