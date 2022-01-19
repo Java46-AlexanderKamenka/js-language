@@ -1,31 +1,41 @@
-function encode(num, codingString)
+
+const arHw = [13, 28, 4, 15, 25, -10, 40, 17,27];
+arHw.sort((a, b) => 
+a % 2 == b % 2 ?
+ (a - b) * (a % 2 ? -1 : 1)
+ : a % 2 - b % 2);
+
+console.log(arHw);
+
+let matrix = [[1,2], [3,4], [5,6]];
+function matrixTransp(matrix) {
+let result = [];
+result.push([])
+result.push([])
+for(let i = 0; i < matrix.length; i++)
 {
-  for (let i = 0; i < codingString.length; i++) 
+	for(let j = 0; j < matrix[i].length; j++)
   {
-    for (let j = i + 1; j < codingString.length; j++) 
+    if (j==0)
     {
-       if (codingString[i] == codingString[j])
-        {
-          console.log("ERROR: String content repeated symbols!");
-          break;
-        }
-      }
+      result[0].push(matrix[i][j]);
     }
-
-    let res="";
-     do {
-       const digit = Math.trunc(num % codingString.length);            
-       const symb = getSymbol(digit, codingString);
-       res = symb + res;
-       num = Math.trunc(num / codingString.length);
-
-         } while(num >= 1);
-         return res;
-  }
-    function getSymbol(digit, codingString) 
+    else
     {
-      return "" + codingString[digit]; 
+      result[1].push(matrix[i][j]);
     }
+    
+	}
+}
+console.log(result);
+}
 
-  console.log(encode(11, "abcdefg"));
+matrixTransp(matrix);
+
+
+
+
+
+  
+
 
